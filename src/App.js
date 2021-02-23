@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import reactDom from 'react-dom';
+import { useState } from 'react';
 
 function App() {
   // const style = {
@@ -30,6 +31,7 @@ function App() {
         </p>
         {/* <Products name = {products[0].name} price = {products[0].price}></Products> */}
         {/* <Products product = {products[1]}></Products> */}
+        <Counter></Counter>
         {
           products.map(product =><Products product = {product}></Products>)
         }
@@ -107,6 +109,14 @@ function Person(props){
       <h1>Name: {props.name}</h1>
       {/* <h4>Job: {props.job}</h4> */}
     </div>)
+}
+function Counter(){
+  const [count, setCount] = useState(20);
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+    </div>
+  )
 }
 
 export default App;
