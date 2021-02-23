@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import reactDom from 'react-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   // const style = {
@@ -32,6 +32,7 @@ function App() {
         {/* <Products name = {products[0].name} price = {products[0].price}></Products> */}
         {/* <Products product = {products[1]}></Products> */}
         <Counter></Counter>
+        <Posts></Posts>
         {
           products.map(product =><Products product = {product}></Products>)
         }
@@ -111,12 +112,44 @@ function Person(props){
     </div>)
 }
 function Counter(){
-  const [count, setCount] = useState(20);
+  const [count, setCount] = useState(0);
+  const handleIncrease = () => {
+    const newCount = count + 1;
+    setCount(newCount);
+    // setCount(count + 1);
+  }
   return (
     <div>
       <h1>Count: {count}</h1>
+      <button onMouseMove = {handleIncrease}>Increase</button>
+      <button onClick = { () => setCount(count - 1)}>Decrease</button>
     </div>
   )
 }
-
+function Posts(){
+  const style = {
+    color: '#fff',
+    backgroundColor: 'green',
+    border: "5px solid orange",
+    borderRadius: "10px",
+    padding: "30px",
+    margin: '10px'
+  }
+  const[posts, setPosts] = useState([]);
+  useEffect(()=>{
+  fetch('https://jsonplaceholder.typicode.com/posts')
+  .then(response => response.json())
+  .then(data => setPosts(data));
+  })
+  return(
+    <div>
+      <h3>Dynamic Post: {posts.length}</h3>
+      <ul>
+          {
+            posts.map(post => <li  style = {style}>{post.id}</li>)
+          }
+      </ul>
+    </div>
+  )
+}
 export default App;
