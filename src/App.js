@@ -19,6 +19,7 @@ function App() {
     {name: 'Photoshop', price: "$99.99"},
     {name: 'Illustrator', price: "$99.99"},
     {name: 'PDF Reader', price: "$99.99"},
+    {name: 'Premier Pro', price: "$299.99"},
   ]
   return (
     <div className="App">
@@ -29,13 +30,31 @@ function App() {
         </p>
         {/* <Products name = {products[0].name} price = {products[0].price}></Products> */}
         {/* <Products product = {products[1]}></Products> */}
-        <Products product = {products[2]}></Products>
+        {
+          products.map(product =><Products product = {product}></Products>)
+        }
+        {
+          friends.map(friend => <Person name = {friend} job = {job}></Person>)
+        }
+
+        {/* <Products product = {products[2]}></Products> */}
+
         <Person name = "Ovijit" job = "Student"></Person>
         <Person name = "Shama" job = "Data Entry"></Person>
-        <Person name = {name[0]} job = {job[0]}></Person>
-        <Person name = {name[2]} job = {job[2]}></Person>
+        
+        {/* <Person name = {friends[0]} job = {job[0]}></Person>
+        <Person name = {friends[2]} job = {job[2]}></Person> */}
         {/* <h2 style = {style}>Name: {person1.name+" "+person1.job}</h2>
         <h2 style={{color: "pink", backgroundColor: "red"}}>Name: {person2.name+" "+person2.job}</h2> */}
+
+        <ul>
+          {
+            friends.map(friend => <li>{friend}</li>)
+          }
+          {
+            products.map(product => <li>{product.name}</li>)
+          }
+        </ul>
         <p>My first react app</p>
         <a
           className="App-link"
@@ -72,7 +91,7 @@ function Products(props){
     </div>
   )
 }
-const name = ['Himel', 'Tinni', 'Rezaul'];
+const friends = ['Himel', 'Tinni', 'Rezaul'];
 const job = ['Student', 'Graphics Designer', 'Gamer']
 function Person(props){
   const style = {
@@ -86,7 +105,7 @@ function Person(props){
   return(
     <div style = {style}>
       <h1>Name: {props.name}</h1>
-      <h4>Job: {props.job}</h4>
+      {/* <h4>Job: {props.job}</h4> */}
     </div>)
 }
 
